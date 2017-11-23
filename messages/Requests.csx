@@ -4,6 +4,7 @@
 
 using System;
 using System.Net;
+using System.Text;
 using System.Net.Http;
 using System.Web;
 using Newtonsoft.Json;
