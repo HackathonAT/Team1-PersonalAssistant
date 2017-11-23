@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System.Net.Http;
+using Requests;
 
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -34,7 +36,8 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
             switch (activity.GetActivityType())
             {
                 case ActivityTypes.Message:
-                    await Conversation.SendAsync(activity, () => new BasicLuisDialog());
+                    //await Conversation.SendAsync(activity, () => new BasicLuisDialog());
+                    await Conversation.SendAsync(activity, Requests.SearchEventBrite("WeAreDevelopers"));
                     break;
                 case ActivityTypes.ConversationUpdate:
                     var client = new ConnectorClient(new Uri(activity.ServiceUrl));
