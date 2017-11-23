@@ -19,7 +19,7 @@ public class CalendarEntry
 
 public class Requests
 {
-	/*const string general_token = "MDBBLI6SHELI6ARWNURT";
+	const string general_token = "MDBBLI6SHELI6ARWNURT";
 	const string venue_token = "M7JQH466CX3WQOU72CSZ ";
     private static readonly HttpClient client = new HttpClient();
     public async static Task<string> SearchEventBrite(string search)
@@ -61,5 +61,5 @@ public class Requests
 
 		return response.StatusCode.ToString() == "200";
 	
-	}*/
+	}
 }
