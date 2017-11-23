@@ -31,7 +31,7 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Events.Book")]
     public async Task EventBookIntent(IDialogContext context, LuisResult result)
     {
-        LuisResult name = null; 
+        LuisResult name; 
     
         if (result.TryFindEntity("Events.Name", out name)) {
             context.PostAsync(name["entity"]);
