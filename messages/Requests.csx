@@ -56,8 +56,11 @@ public class Requests
 		entry.location = location.ToString() ?? "";
 
 		var json = JsonConvert.SerializeObject(entry);
-		var response = await client.PostAsync(officeURL, new StringContent(json, Encoding.UTF8, "application/json"));
+		var sc = new StringContent(json, Encoding.UTF8, "application/json");
 
-		return response.StatusCode.ToString() == "200";	
+		//var response = await client.PostAsync(officeURL, sc);
+
+		//return response.StatusCode.ToString() == "200";
+		return false;	
 	}
 }
