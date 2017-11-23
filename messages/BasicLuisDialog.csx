@@ -12,7 +12,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 [Serializable]
 public class BasicLuisDialog : LuisDialog<object>
 {
-    public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
+    //public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
     public BasicLuisDialog() : base(new LuisService(new LuisModelAttribute(Utils.GetAppSetting("LuisAppId"), Utils.GetAppSetting("LuisAPIKey"))))
     {
     }
@@ -28,7 +28,7 @@ public class BasicLuisDialog : LuisDialog<object>
 
     // Go to https://luis.ai and create a new intent, then train/publish your luis app.
     // Finally replace "MyIntent" with the name of your newly created intent in the following handler
-    [LuisIntent("Events.Book")]
+    /*[LuisIntent("Events.Book")]
     public async Task EventBookIntent(IDialogContext context, LuisResult result)
     {
         string name = null;
@@ -78,5 +78,5 @@ public class BasicLuisDialog : LuisDialog<object>
         } else {
             await context.PostAsync("I didn't ask you a Yes/No question!");
         }
-    }
+    }*/
 }
