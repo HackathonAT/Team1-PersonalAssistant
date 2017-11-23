@@ -14,6 +14,7 @@ using Windows.Security.Authentication.Web;
 [Serializable]
 public class BasicLuisDialog : LuisDialog<object>
 {
+    public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
     public BasicLuisDialog() : base(new LuisService(new LuisModelAttribute(Utils.GetAppSetting("LuisAppId"), Utils.GetAppSetting("LuisAPIKey"))))
     {
     }
@@ -32,14 +33,15 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Events.Book")]
     public async Task EventBookIntent(IDialogContext context, LuisResult result)
     {
-        TimeSpan hour = new TimeSpan(36, 0, 0, 0);
         string name = null;
     
         if (result.TryFindEntity("Event.Name", out name)) {
+            
             var result = Requests.SearchEventBrite(name);
             if (result.Count == 0) {
                 await context.PostAsync("Sorry! I couldn't find this event!");
             } else {
+                context.UserData["result"] = result;
                 if (!context.UserData.ContainsKey("searchIndex")) {
                     context.UserData["searchIndex"] = 0;
                 } else {
@@ -63,7 +65,18 @@ public class BasicLuisDialog : LuisDialog<object>
     public async Task UtilitiesConfirmIntent(IDialogContext context, LuisResult result)
     {
         if (context.UserData["expectingYesNo"] == 1) {
-            context.UserData["result"] = 
+            var resultEvent = context.UserData["result"];
+            var startUTC = DateTime.Parse(resultEvent["start"]["utc"]);
+            var start = startUTC.Add(hour);
+            var endUTC = DateTime.Parse(resultEvent["start"]["utc"]);
+            var end = endUTC.Add(hour);
+            var venueID = resultEvent["venue_id"];
+            var venue = Requests.GetVenueAddress(venueID)["address"]["localized_address_display"];
+            if (Requests.SetCalendarEntry(resultEvent["name"]["text"], start, end, venue)) {
+                await context.PostAsync("The event has been submitted to your calendar successfully!");
+            } else {
+                await context.PostAsync("There was an error editing your calendar!");                
+            }
         } else {
             await context.PostAsync("I didn't ask you a Yes/No question!");
         }
