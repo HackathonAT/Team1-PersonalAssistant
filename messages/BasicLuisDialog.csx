@@ -52,7 +52,7 @@ public class BasicLuisDialog : LuisDialog<object>
                 //var end =eventResultresult[0]["end"]["utc"];
                 await context.PostAsync($"Do you mean {nameDB} starting at {start.ToString()}?");
                 context.UserData["expectingYesNo"] = 1;
-            }*/
+            }
         } else {
             await context.PostAsync($"You didn't provide a name!");            
         }*/
