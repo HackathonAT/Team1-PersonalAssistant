@@ -1,12 +1,13 @@
-﻿using System;
+﻿#r "System.Net.Http"
+
+using System;
 using System.Net;
 using System.Web;
-using System.Net.Http;
 using Newtonsoft.Json;
 
 public class Requests
 {
-    private static readonly HttpClient client = new HttpClient();
+    private static readonly System.Net.HttpClient client = new HttpClient();
 
     public static string SearchEventBrite(string search)
 	{
