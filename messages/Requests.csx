@@ -55,12 +55,11 @@ public class Requests
 		entry.end = end.ToString(format) ?? "";
 		entry.location = location.ToString() ?? "";
 
+		var json = JsonConvert.SerializeObject(entry);
 		return false;
-		/*var json = JsonConvert.SerializeObject(entry);
+		//var response = await client.PostAsync(officeURL, new StringContent(json, Encoding.UTF8, "application/json"));
 
-		var response = await client.PostAsync(officeURL, new StringContent(json, Encoding.UTF8, "application/json"));
-
-		return response.StatusCode.ToString() == "200";*/
+		//return response.StatusCode.ToString() == "200";*/
 	
 	}
 }
