@@ -35,7 +35,7 @@ public class BasicLuisDialog : LuisDialog<object>
     
         if (result.TryFindEntity("Event.Name", out name)) {
             
-            var eventResult = await Requests.SearchEventBrite(name);
+            /*var eventResult = await Requests.SearchEventBrite(name);
             if (eventResult.Length == 0) {
                 await context.PostAsync("Sorry! I couldn't find this event!");
             } else {
@@ -52,7 +52,7 @@ public class BasicLuisDialog : LuisDialog<object>
                 //var end =eventResultresult[0]["end"]["utc"];
                 await context.PostAsync($"Do you mean {nameDB} starting at {start.ToString()}?");
                 context.UserData["expectingYesNo"] = 1;
-            }
+            }*/
         } else {
             await context.PostAsync($"You didn't provide a name!");            
         }
