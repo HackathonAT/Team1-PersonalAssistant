@@ -33,7 +33,7 @@ public class BasicLuisDialog : LuisDialog<object>
     {
         LuisResult name = null; 
     
-        if (result.TryFindEntity("Event.Name", out name)) {
+        if (result.TryFindEntity("Events.Name", out name)) {
             context.PostAsync(name["entity"]);
             //var eventResult = await Requests.SearchEventBrite(name["entity"]);
             /*if (eventResult.Length == 0) {
