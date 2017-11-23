@@ -50,13 +50,13 @@ public class Requests
 		
 		var format = "YYYY-MM-ddTHH:mm:00";
 		var entry = new CalendarEntry();
-		return false;
-		/*entry.name = name;
+		entry.name = name;
 		entry.start = start.ToString(format) ?? "";
 		entry.end = end.ToString(format) ?? "";
 		entry.location = location.ToString() ?? "";
 
-		var json = JsonConvert.SerializeObject(entry);
+		return false;
+		/*var json = JsonConvert.SerializeObject(entry);
 
 		var response = await client.PostAsync(officeURL, new StringContent(json, Encoding.UTF8, "application/json"));
 
