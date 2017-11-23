@@ -45,7 +45,7 @@ public class Requests
 		return result;
 	}
 
-	/*public async static Task<bool> SetCalendarEntry(string name, DateTime start, DateTime end, string location) {
+	public async static Task<bool> SetCalendarEntry(string name, DateTime start, DateTime end, string location) {
 		string officeURL = "https://prod-15.westeurope.logic.azure.com:443/workflows/22c10836f56e4a9ca58759449d98bc54/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Aq0oTX4UhhRxi6aslD1xZVOtSznoLhKIBQsEFEJKAVY";
 		
 		var format = "YYYY-MM-ddTHH:mm:00";
@@ -55,11 +55,11 @@ public class Requests
 		entry.end = end.ToString(format) ?? "";
 		entry.location = location.ToString() ?? "";
 
-		var json = JsonConvert.SerializeObject(entry);
+		/*var json = JsonConvert.SerializeObject(entry);
 
 		var response = await client.PostAsync(officeURL, new StringContent(json, Encoding.UTF8, "application/json"));
 
-		return response.StatusCode.ToString() == "200";
+		return response.StatusCode.ToString() == "200";*/
 	
-	}*/
+	}
 }
