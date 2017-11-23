@@ -59,7 +59,7 @@ public class BasicLuisDialog : LuisDialog<object>
         context.Wait(MessageReceived);
     }
 
-    [LuisIntent("Utilities.Confirm")]
+    /*[LuisIntent("Utilities.Confirm")]
     public async Task UtilitiesConfirmIntent(IDialogContext context, LuisResult result)
     {
         if (context.UserData["expectingYesNo"] == 1) {
@@ -78,5 +78,5 @@ public class BasicLuisDialog : LuisDialog<object>
         } else {
             await context.PostAsync("I didn't ask you a Yes/No question!");
         }
-    }
+    }*/
 }
