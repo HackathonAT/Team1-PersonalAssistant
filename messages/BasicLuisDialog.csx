@@ -31,10 +31,10 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Events.Book")]
     public async Task EventBookIntent(IDialogContext context, LuisResult result)
     {
-        LuisResult name; 
+        EntityRecommendation name; 
     
         if (result.TryFindEntity("Events.Name", out name)) {
-            context.PostAsync(name["entity"]);
+            context.PostAsync(name.Entity);
             //var eventResult = await Requests.SearchEventBrite(name["entity"]);
             /*if (eventResult.Length == 0) {
                 await context.PostAsync("Sorry! I couldn't find this event!");
