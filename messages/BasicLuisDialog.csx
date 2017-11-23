@@ -33,7 +33,7 @@ public class BasicLuisDialog : LuisDialog<object>
     {
         string name = null;
     
-        if (result.TryFindEntity("Event.Name", out name)) {
+        /*if (result.TryFindEntity("Event.Name", out name)) {
             
             /*var eventResult = await Requests.SearchEventBrite(name);
             if (eventResult.Length == 0) {
@@ -55,7 +55,7 @@ public class BasicLuisDialog : LuisDialog<object>
             }*/
         } else {
             await context.PostAsync($"You didn't provide a name!");            
-        }
+        }*/
         context.Wait(MessageReceived);
     }
 
