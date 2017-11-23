@@ -35,7 +35,7 @@ public class Requests
 
 	}
 
-	public async static Task<string> GetVenueAddress(string venueID) {
+	/*public async static Task<string> GetVenueAddress(string venueID) {
 		string url = $"https://www.eventbriteapi.com/v3/venues/{venueID}/?token={general_token}";
 
 		string response = await client.GetStringAsync(url);
@@ -61,5 +61,5 @@ public class Requests
 
 		return response.StatusCode.ToString() == "200";
 	
-	}
+	}*/
 }
