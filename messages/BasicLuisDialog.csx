@@ -16,6 +16,7 @@ public class BasicLuisDialog : LuisDialog<object>
     {
     }
 
+    [LuisIntent("")]
     [LuisIntent("None")]
     public async Task NoneIntent(IDialogContext context, LuisResult result)
     {
