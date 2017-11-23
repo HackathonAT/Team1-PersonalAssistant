@@ -61,6 +61,5 @@ public class Requests
 		var response = await client.PostAsync(officeURL, sc);
 
 		return response.StatusCode.ToString() == "200";
-		return false;	
 	}
 }
