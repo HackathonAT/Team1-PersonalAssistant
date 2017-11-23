@@ -36,11 +36,11 @@ public class Requests
 
 	}
 
+
 	public async static Task<string> GetVenueAddress(string venueID) {
 		string url = $"https://www.eventbriteapi.com/v3/venues/{venueID}/?token={general_token}";
 
 		string response = await client.GetStringAsync(url);
-
 		var result = JsonConvert.DeserializeObject<dynamic>(response);
 
 		return result;
@@ -58,10 +58,9 @@ public class Requests
 
 		var json = JsonConvert.SerializeObject(entry);
 		var sc = new StringContent(json, Encoding.UTF8, "application/json");
+		var response = await client.PostAsync(officeURL, sc);
 
-		//var response = await client.PostAsync(officeURL, sc);
-
-		//return response.StatusCode.ToString() == "200";
+		return response.StatusCode.ToString() == "200";
 		return false;	
 	}
 }
