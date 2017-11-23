@@ -12,7 +12,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 [Serializable]
 public class BasicLuisDialog : LuisDialog<object>
 {
-    public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
+    //public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
     public BasicLuisDialog() : base(new LuisService(new LuisModelAttribute(Utils.GetAppSetting("LuisAppId"), Utils.GetAppSetting("LuisAPIKey"))))
     {
     }
