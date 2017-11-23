@@ -46,7 +46,7 @@ public class Requests
 	}
 
 	public async static Task<bool> SetCalendarEntry(string name, DateTime start, DateTime end, string location) {
-		//string officeURL = "https://prod-15.westeurope.logic.azure.com:443/workflows/22c10836f56e4a9ca58759449d98bc54/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Aq0oTX4UhhRxi6aslD1xZVOtSznoLhKIBQsEFEJKAVY";
+		string officeURL = "https://prod-15.westeurope.logic.azure.com:443/workflows/22c10836f56e4a9ca58759449d98bc54/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Aq0oTX4UhhRxi6aslD1xZVOtSznoLhKIBQsEFEJKAVY";
 		
 		var format = "YYYY-MM-ddTHH:mm:00";
 		return false;
