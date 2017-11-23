@@ -22,7 +22,8 @@ public class Requests
 
         var result = JsonConvert.DeserializeObject<dynamic>(response);
 
-	    return result["events"][0]["name"]["text"];
+	    return result["events"];
 
 	}
 }
+	

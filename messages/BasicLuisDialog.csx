@@ -1,3 +1,4 @@
+#r "Windows.Security.Authentication.Web"
 #load "Requests.csx"
 
 using System;
@@ -7,6 +8,7 @@ using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using Windows.Security.Authentication.Web;
 
 // For more information about this template visit http://aka.ms/azurebots-csharp-luis
 [Serializable]
@@ -20,8 +22,8 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("None")]
     public async Task NoneIntent(IDialogContext context, LuisResult result)
     {
-        //await context.PostAsync($"You have reached the none intent. You said: {result.Query}"); //
-        await context.PostAsync(await Requests.SearchEventBrite("WeAreDevelopers"));
+        await context.PostAsync($"Sorry, I didn't quite get that! Please rephrase your request."); //
+        //await context.PostAsync(await Requests.SearchEventBrite("WeAreDevelopers"));
         context.Wait(MessageReceived);
     }
 
@@ -30,7 +32,40 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("Events.Book")]
     public async Task EventBookIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the EventIntent intent. You said: {result.Query}"); //
-        context.Wait(MessageReceived);  
+        TimeSpan hour = new TimeSpan(36, 0, 0, 0);
+        string name = null;
+    
+        if (result.TryFindEntity("Event.Name", out name)) {
+            var result = Requests.SearchEventBrite(name);
+            if (result.Count == 0) {
+                await context.PostAsync("Sorry! I couldn't find this event!");
+            } else {
+                if (!context.UserData.ContainsKey("searchIndex")) {
+                    context.UserData["searchIndex"] = 0;
+                } else {
+                    context.UserData["searchIndex"]++;
+                }
+                var idx = context.UserData["searchIndex"];
+                var name = result[idx]["name"]["text"];
+                var start = DateTime.Parse(result[idx]["start"]["utc"]);
+                start = start.Add(start);
+                //var end = result[0]["end"]["utc"];
+                await context.PostAsync($"Do you mean {name} starting at {start.ToString()}?");
+                context.UserData["expectingYesNo"] = 1;
+            }
+        } else {
+            await context.PostAsync($"You didn't provide a name!");            
+        }
+        context.Wait(MessageReceived);
+    }
+
+    [LuisIntent("Utilities.Confirm")]
+    public async Task UtilitiesConfirmIntent(IDialogContext context, LuisResult result)
+    {
+        if (context.UserData["expectingYesNo"] == 1) {
+            context.UserData["result"] = 
+        } else {
+            await context.PostAsync("I didn't ask you a Yes/No question!");
+        }
     }
 }

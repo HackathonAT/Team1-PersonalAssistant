@@ -15,6 +15,10 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
     log.Info($"Webhook was triggered!");
 
+    if (req.Properties.ContainsKey("code")) {
+        return req.CreateResponse("Hi");
+    }
+
     // Initialize the azure bot
     using (BotService.Initialize())
     {
