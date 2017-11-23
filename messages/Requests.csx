@@ -1,7 +1,9 @@
 ﻿#r "System.Net.Http"
+#r "Newtonsoft.Json"
 
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using Newtonsoft.Json;
 

@@ -1,3 +1,5 @@
+#load "Requests.csx"
+
 using System;
 using System.Threading.Tasks;
 
@@ -17,7 +19,8 @@ public class BasicLuisDialog : LuisDialog<object>
     [LuisIntent("None")]
     public async Task NoneIntent(IDialogContext context, LuisResult result)
     {
-        await context.PostAsync($"You have reached the none intent. You said: {result.Query}"); //
+        //await context.PostAsync($"You have reached the none intent. You said: {result.Query}"); //
+        await context.PostAsync(Requests.SearchEventBrite("WeAreDevelopers"));
         context.Wait(MessageReceived);
     }
 
