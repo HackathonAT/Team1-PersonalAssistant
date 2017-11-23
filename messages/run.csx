@@ -1,5 +1,6 @@
 #r "Newtonsoft.Json"
 #load "BasicLuisDialog.csx"
+#load "Requests.csx"
 
 using System;
 using System.Net;
@@ -10,7 +11,6 @@ using Microsoft.Bot.Builder.Azure;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System.Net.Http;
-using Requests;
 
 public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 {
