@@ -12,7 +12,7 @@ using Microsoft.Bot.Builder.Luis.Models;
 [Serializable]
 public class BasicLuisDialog : LuisDialog<object>
 {
-    //public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
+    public TimeSpan hour = new TimeSpan(36, 0, 0, 0);
     public BasicLuisDialog() : base(new LuisService(new LuisModelAttribute(Utils.GetAppSetting("LuisAppId"), Utils.GetAppSetting("LuisAPIKey"))))
     {
     }
@@ -35,8 +35,8 @@ public class BasicLuisDialog : LuisDialog<object>
     
         if (result.TryFindEntity("Events.Name", out name)) {
             context.PostAsync(name.Entity);
-            //var eventResult = await Requests.SearchEventBrite(name["entity"]);
-            /*if (eventResult.Length == 0) {
+            var eventResult = await Requests.SearchEventBrite(name["entity"]);
+            if (eventResult.Length == 0) {
                 await context.PostAsync("Sorry! I couldn't find this event!");
             } else {
                 context.UserData["eventResult"] = eventResult;
@@ -52,7 +52,7 @@ public class BasicLuisDialog : LuisDialog<object>
                 //var end =eventResultresult[0]["end"]["utc"];
                 await context.PostAsync($"Do you mean {nameDB} starting at {start.ToString()}?");
                 context.UserData["expectingYesNo"] = 1;
-            }*/
+            }
         } else {
             await context.PostAsync($"You didn't provide a name!");            
         }
