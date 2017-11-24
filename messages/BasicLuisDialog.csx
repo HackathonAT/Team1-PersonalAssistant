@@ -36,7 +36,7 @@ public class BasicLuisDialog : LuisDialog<object>
         if (result.TryFindEntity("Events.Name", out name)) {
             context.PostAsync(name.Entity);
             string eventResult = await Requests.SearchEventBrite(name.Entity);
-            /*if (eventResult.Length == 0) {
+            if (eventResult.Length == 0) {
                 await context.PostAsync("Sorry! I couldn't find this event!");
             } else {
                 /*context.UserData["eventResult"] = eventResult;
@@ -51,8 +51,8 @@ public class BasicLuisDialog : LuisDialog<object>
                 var start = startUTC.Add(hour);
                 //var end =eventResultresult[0]["end"]["utc"];
                 await context.PostAsync($"Do you mean {nameDB} starting at {start.ToString()}?");
-                context.UserData["expectingYesNo"] = 1;
-            }*/
+                context.UserData["expectingYesNo"] = 1;*/
+            }
         } else {
             await context.PostAsync($"You didn't provide a name!");            
         }
